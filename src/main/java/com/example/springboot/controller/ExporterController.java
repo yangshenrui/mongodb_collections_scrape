@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicLong;
 
 @RestController
 @RequestMapping("/exporter")
@@ -24,11 +25,13 @@ public class ExporterController {
     @Autowired
     private final ExporterRepository exporterRepository;
     private Counter counter_age;
+    private AtomicLong count_gauge;
 
     @PostConstruct
     private void init(){
-        long count = 0;
-        Long count_gauge = registry.gauge("access.log.statistic.count", new ArrayList<Tag>(), count);
+        AtomicLong count = new AtomicLong(0l);
+
+        count_gauge = registry.gauge("access.log.statistic.count", new ArrayList<Tag>(), count);
     }
 
     public ExporterController(ExporterRepository exporterRepository) {
@@ -37,8 +40,8 @@ public class ExporterController {
 
     @GetMapping("")
     public List<Exporter> getAllExporters() {
-        List<Exporter> all = exporterRepository.findAll();
 
+        count_gauge.getAndIncrement();
         return exporterRepository.findAll();
     }
 }
