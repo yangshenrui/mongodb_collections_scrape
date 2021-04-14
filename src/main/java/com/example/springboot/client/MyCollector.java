@@ -11,8 +11,8 @@ import java.util.Arrays;
 import java.util.List;
 @Component
 public class MyCollector extends Collector {
-    @Autowired
-    private AccessLogStaticRepository accessLogStaticRepository;
+//    @Autowired
+//    private AccessLogStaticRepository accessLogStaticRepository;
 
     public List<MetricFamilySamples> collect() {
         List<MetricFamilySamples> mfs = new ArrayList<MetricFamilySamples>();
@@ -21,16 +21,16 @@ public class MyCollector extends Collector {
     }
 
     private void cc(List<MetricFamilySamples> mfs) {
-        List<AccessLogStatic> byMonitorTime = accessLogStaticRepository.findByMonitorTime(202101250012l);
-        String countMetricName = "access_log_statistic_count";
-        ArrayList<MetricFamilySamples.Sample> aSamples = new ArrayList<>();
-        byMonitorTime.forEach(accessLogStatic -> {
-            aSamples.add(new MetricFamilySamples.Sample(countMetricName,
-                    Arrays.asList("name", "host"),
-                    Arrays.asList(accessLogStatic.getName(), accessLogStatic.getHost()),
-                    accessLogStatic.getCount()));
-        });
-        MetricFamilySamples samples = new MetricFamilySamples(countMetricName, Type.GAUGE, "help", aSamples);
-        mfs.add(samples);
+//        List<AccessLogStatic> byMonitorTime = accessLogStaticRepository.findByMonitorTime(202101250012l);
+//        String countMetricName = "access_log_statistic_count";
+//        ArrayList<MetricFamilySamples.Sample> aSamples = new ArrayList<>();
+//        byMonitorTime.forEach(accessLogStatic -> {
+//            aSamples.add(new MetricFamilySamples.Sample(countMetricName,
+//                    Arrays.asList("name", "host"),
+//                    Arrays.asList(accessLogStatic.getName(), accessLogStatic.getHost()),
+//                    accessLogStatic.getCount()));
+//        });
+//        MetricFamilySamples samples = new MetricFamilySamples(countMetricName, Type.GAUGE, "help", aSamples);
+//        mfs.add(samples);
     }
 }
