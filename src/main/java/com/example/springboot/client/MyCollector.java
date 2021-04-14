@@ -1,6 +1,7 @@
 package com.example.springboot.client;
 
 import com.example.springboot.dal.AccessLogStaticRepository;
+import com.example.springboot.data.primary.repository.AccessLogStatisticRepository;
 import com.example.springboot.model.AccessLogStatic;
 import io.prometheus.client.Collector;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +12,8 @@ import java.util.Arrays;
 import java.util.List;
 @Component
 public class MyCollector extends Collector {
-//    @Autowired
-//    private AccessLogStaticRepository accessLogStaticRepository;
+    @Autowired
+    private AccessLogStatisticRepository accessLogStatisticRepository;
 
     public List<MetricFamilySamples> collect() {
         List<MetricFamilySamples> mfs = new ArrayList<MetricFamilySamples>();
