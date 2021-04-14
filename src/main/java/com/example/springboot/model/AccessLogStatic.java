@@ -7,7 +7,6 @@ import org.springframework.data.mongodb.core.mapping.Field;
 @Data
 @Document("log_20210125")
 public class AccessLogStatic {
-    @Field("count")
     private long count;
     private float responseAvgTime;
     private float upstreamAvgTime;
@@ -15,7 +14,6 @@ public class AccessLogStatic {
     private float upstreamMaxTime;
     private float totalUpstreamTime;
     private float totalResponseTime;
-    @Field("name")
     private String name;
     private String host;
     private String statusCode;
