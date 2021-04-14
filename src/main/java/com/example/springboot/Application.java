@@ -41,9 +41,9 @@ public class Application implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		new YourCustomCollector().register();
-		new YourCustomCollector2().register();
-		myCollector.register();
+//		new YourCustomCollector().register();
+//		new YourCustomCollector2().register();
+//		myCollector.register();
 //		accessLogStatisticCollector.collect();
 //		accessLogStatisticCollector.register();
 		CollectorRegistry.defaultRegistry.register(accessLogStatisticCollector);

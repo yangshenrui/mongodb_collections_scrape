@@ -24,10 +24,10 @@ public class MongoQueryAspect {
     public void doBefore(JoinPoint joinPoint, MongoQuery mongoQuery) {
         MyRepository repository = RepositoryEnum.valueOf(mongoQuery.name()).getRepository();
 //        repository.findByMonitorTime(202101250000l);
-        System.out.println(repository.findByMonitorTime(202101250000l).size());
+//        System.out.println(repository.findByMonitorTime(202101250000l).size());
 //        MyRepository repository = (MyRepository) mongoQuery.repository().getRepository();
-//        MongoData.accessLogStatistics = repository.findByMonitorTime(202101250000l);
-        System.out.println("accessLogStatisticRepository 执行一次查询");
+        MongoData.accessLogStatistics = repository.findByMonitorTime(202101250000l);
+        System.out.println(mongoQuery.name() + " 执行一次查询");
     }
 
 //    @Pointcut("execution(* com.example.springboot.client.*.collect(..))")

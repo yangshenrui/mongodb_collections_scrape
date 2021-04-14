@@ -17,7 +17,7 @@ public class AccessLogStatisticCollector extends Collector implements Kong{
     @MongoQuery(name = "ACCESS_LOG_STATISTIC")
     @Override
     public List<MetricFamilySamples> collect() {
-        System.out.println("ddf");
+        System.out.println("执行一次 ACCESS_LOG_STATISTIC collect");
         List<MetricFamilySamples> mfs = new ArrayList<MetricFamilySamples>();
         mfs.add(metricsOfCount());
         return mfs;
@@ -33,12 +33,12 @@ public class AccessLogStatisticCollector extends Collector implements Kong{
     private MetricFamilySamples metricsOfCount() {
         String metricName = "access_log_statistic_count";
         ArrayList<MetricFamilySamples.Sample> metricList = new ArrayList<>();
-//        MongoData.accessLogStatistics.forEach(accessLogStatic -> {
-//            metricList.add(new MetricFamilySamples.Sample(metricName,
-//                    Arrays.asList("name", "host"),
-//                    Arrays.asList(accessLogStatic.getName(), accessLogStatic.getHost()),
-//                    accessLogStatic.getCount()));
-//        });
+        MongoData.accessLogStatistics.forEach(accessLogStatic -> {
+            metricList.add(new MetricFamilySamples.Sample(metricName,
+                    Arrays.asList("name", "host"),
+                    Arrays.asList(accessLogStatic.getName(), accessLogStatic.getHost()),
+                    accessLogStatic.getCount()));
+        });
         return new MetricFamilySamples(metricName, Type.GAUGE, "asdf", metricList);
     }
 }
