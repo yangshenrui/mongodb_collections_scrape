@@ -13,7 +13,7 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
 import java.util.Random;
 
-@EnableAspectJAutoProxy(proxyTargetClass = false)
+@EnableAspectJAutoProxy
 @SpringBootApplication
 public class Application implements CommandLineRunner {
 	@Autowired
@@ -30,8 +30,10 @@ public class Application implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
+		// 注册采集器
 		CollectorRegistry.defaultRegistry.register(accessLogStatisticCollector);
 		CollectorRegistry.defaultRegistry.register(logStatisticCollector);
+		// 暴露端口
 		HTTPServer server = new HTTPServer(1234);
 	}
 

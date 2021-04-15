@@ -26,11 +26,4 @@ public class DateUtil {
         else
             return "0" + i1;
     }
-
-    public static  void main(String[] args) throws InterruptedException {
-        while (true) {
-            Thread.sleep(1100);
-            System.out.println(minMod12());
-        }
-    }
 }
