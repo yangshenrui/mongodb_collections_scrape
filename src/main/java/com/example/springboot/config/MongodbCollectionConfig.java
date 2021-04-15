@@ -5,6 +5,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
 
+/**
+ * 原本用于动态生成集合名，现已废弃.
+ */
 @Configuration
 public class MongodbCollectionConfig {
 

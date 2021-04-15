@@ -8,11 +8,18 @@ import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 
+/**
+ * 存储 Repository 及 结果数据集.
+ */
 public enum RepositoryEnum {
     ACCESS_LOG_STATISTIC(),
     LOG_STATISTIC();
 
     private MyRepository repository;
+    /**
+     * mongo 数据集
+     */
+    private Object data;
 
     public MyRepository getRepository() {
         return repository;
@@ -20,6 +27,14 @@ public enum RepositoryEnum {
 
     public void setRepository(MyRepository repository) {
         this.repository = repository;
+    }
+
+    public Object getData() {
+        return data;
+    }
+
+    public void setData(Object data) {
+        this.data = data;
     }
 
     @Component
