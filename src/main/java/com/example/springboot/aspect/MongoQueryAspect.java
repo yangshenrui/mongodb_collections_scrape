@@ -31,10 +31,6 @@ public class MongoQueryAspect {
     public void doBefore(JoinPoint joinPoint, MongoQuery mongoQuery) {
         RepositoryEnum repositoryEnum = RepositoryEnum.valueOf(mongoQuery.name());
         MyRepository repository = repositoryEnum.getRepository();
-//        repository.findByMonitorTime(202101250000l);
-//        System.out.println(repository.findByMonitorTime(202101250000l).size());
-//        MyRepository repository = (MyRepository) mongoQuery.repository().getRepository();
-//        MongoData.accessLogStatistics = repository.findByMonitorTime(202101250000l);
         String s = DateUtil.minMod12();
         if ("ACCESS_LOG_STATISTIC".equals(mongoQuery.name())) {
             long l = Long.parseLong("2021012500" + s);
@@ -43,18 +39,6 @@ public class MongoQueryAspect {
             long l = Long.parseLong("2021030100" + s);
             repositoryEnum.setData(repository.findByMonitorTime(l));
         }
-//            repositoryEnum.setData(repository.findByMonitorTime(202103010000l));
-//        List<AccessLogStatistic> d = (List<AccessLogStatistic>) data;
-//        System.out.println(d.size());
         System.out.println(mongoQuery.name() + " 执行一次查询");
     }
-
-//    @Pointcut("execution(* com.example.springboot.client.*.collect(..))")
-//    public void serviceStatistics() {
-//    }
-//
-//    @Before("serviceStatistics()")
-//    public void doBefore(JoinPoint joinPoint) {
-//        System.out.println("accessLogStatisticRepository 执行一次查询");
-//    }
 }

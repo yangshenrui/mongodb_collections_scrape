@@ -17,7 +17,7 @@ public class DateUtil {
      * 当前分钟数模12.
      */
     public static String minMod12() {
-        DateTimeFormatter dateFomatter = DateTimeFormatter.ofPattern("ss");
+        DateTimeFormatter dateFomatter = DateTimeFormatter.ofPattern("mm");
         String format = LocalDateTime.now().format(dateFomatter);
         int i = Integer.parseInt(format);
         int i1 = i % 12;
