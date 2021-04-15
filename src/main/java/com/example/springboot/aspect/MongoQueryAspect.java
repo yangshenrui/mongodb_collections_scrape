@@ -6,6 +6,7 @@ import com.example.springboot.dal.RepositoryEnum;
 import com.example.springboot.data.MongoData;
 import com.example.springboot.data.primary.model.AccessLogStatistic;
 import com.example.springboot.data.primary.repository.AccessLogStatisticRepository;
+import com.example.springboot.util.DateUtil;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
@@ -34,7 +35,15 @@ public class MongoQueryAspect {
 //        System.out.println(repository.findByMonitorTime(202101250000l).size());
 //        MyRepository repository = (MyRepository) mongoQuery.repository().getRepository();
 //        MongoData.accessLogStatistics = repository.findByMonitorTime(202101250000l);
-        repositoryEnum.setData(repository.findByMonitorTime(202101250000l));
+        String s = DateUtil.minMod12();
+        if ("ACCESS_LOG_STATISTIC".equals(mongoQuery.name())) {
+            long l = Long.parseLong("2021012500" + s);
+            repositoryEnum.setData(repository.findByMonitorTime(l));
+        } else {
+            long l = Long.parseLong("2021030100" + s);
+            repositoryEnum.setData(repository.findByMonitorTime(l));
+        }
+//            repositoryEnum.setData(repository.findByMonitorTime(202103010000l));
 //        List<AccessLogStatistic> d = (List<AccessLogStatistic>) data;
 //        System.out.println(d.size());
         System.out.println(mongoQuery.name() + " 执行一次查询");

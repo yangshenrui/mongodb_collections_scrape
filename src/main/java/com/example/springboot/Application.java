@@ -19,6 +19,9 @@ public class Application implements CommandLineRunner {
 	@Autowired
 	private AccessLogStatisticCollector accessLogStatisticCollector;
 
+	@Autowired
+	private LogStatisticCollector logStatisticCollector;
+
 
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
@@ -28,6 +31,7 @@ public class Application implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		CollectorRegistry.defaultRegistry.register(accessLogStatisticCollector);
+		CollectorRegistry.defaultRegistry.register(logStatisticCollector);
 		HTTPServer server = new HTTPServer(1234);
 	}
 
