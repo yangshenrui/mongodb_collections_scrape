@@ -8,7 +8,7 @@ import java.io.Serializable;
 
 @Data
 @Accessors(chain = true)
-@Document(collection = "#{T(com.example.springboot.config.MongodbP).name}")
+@Document(collection = "#{T(com.example.springboot.config.MongodbC).name}")
 public class AccessLogStatistic  {
     private long count;
     private float responseAvgTime;

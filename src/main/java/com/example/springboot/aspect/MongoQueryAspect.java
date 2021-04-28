@@ -31,14 +31,10 @@ public class MongoQueryAspect {
     public void doBefore(JoinPoint joinPoint, MongoQuery mongoQuery) {
         RepositoryEnum repositoryEnum = RepositoryEnum.valueOf(mongoQuery.name());
         MyRepository repository = repositoryEnum.getRepository();
-        String s = DateUtil.minMod12();
-        if ("ACCESS_LOG_STATISTIC".equals(mongoQuery.name())) {
-            long l = Long.parseLong("2021012500" + s);
-            repositoryEnum.setData(repository.findByMonitorTime(l));
-        } else {
-            long l = Long.parseLong("2021030100" + s);
-            repositoryEnum.setData(repository.findByMonitorTime(l));
-        }
-        System.out.println(mongoQuery.name() + " 执行一次查询");
+        // 由于 mongo 数据延迟两分钟，这里每次触发采集查询两分钟前的数据
+        long l = Long.parseLong(DateUtil.nowMinus(2, "yyyyMMddHHmm"));
+        // 存储查询结果
+        repositoryEnum.setData(repository.findByMonitorTime(l));
+        System.out.println(mongoQuery.name() + " 执行一次查询" + l);
     }
 }

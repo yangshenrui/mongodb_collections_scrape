@@ -6,11 +6,19 @@ import java.time.temporal.ChronoUnit;
 
 public class DateUtil {
     /**
-     * 据今天 num 天前的日期.
+     * 生成指定格式的据今天 num 天前的时间.
      */
-    public static String todayMinus(int num) {
-        DateTimeFormatter dateFomatter = DateTimeFormatter.ofPattern("yyyyMMddss");
+    public static String todayMinus(int num, String format) {
+        DateTimeFormatter dateFomatter = DateTimeFormatter.ofPattern(format);
         return LocalDateTime.now().minus(num, ChronoUnit.DAYS).format(dateFomatter);
+    }
+
+    /**
+     * 生成指定格式的据现在 minutes 分钟前的时间.
+     */
+    public static String nowMinus(int minutes, String format) {
+        DateTimeFormatter dateFomatter = DateTimeFormatter.ofPattern(format);
+        return LocalDateTime.now().minus(minutes, ChronoUnit.MINUTES).format(dateFomatter);
     }
 
     /**

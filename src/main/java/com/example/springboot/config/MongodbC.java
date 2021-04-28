@@ -9,8 +9,7 @@ public class MongodbC {
     private static String name;
 
     public static String getName() {
-        name = "log_" + DateUtil.todayMinus(0);
-        return name;
+        return "log_" + DateUtil.todayMinus(0, "yyyyMMdd");
     }
 
     public static void setName(String name) {

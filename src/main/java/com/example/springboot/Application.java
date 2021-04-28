@@ -34,7 +34,7 @@ public class Application implements CommandLineRunner {
 		CollectorRegistry.defaultRegistry.register(accessLogStatisticCollector);
 		CollectorRegistry.defaultRegistry.register(logStatisticCollector);
 		// 暴露端口
-		HTTPServer server = new HTTPServer(1234);
+		HTTPServer server = new HTTPServer(10010);
 	}
 
 }

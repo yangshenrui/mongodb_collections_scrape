@@ -6,7 +6,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 @Data
 @Accessors(chain = true)
-@Document(collection = "#{T(com.example.springboot.config.MongodbS).name}")
+@Document(collection = "#{T(com.example.springboot.config.MongodbC).name}")
 public class LogStatistic {
     private long count;
     private float avgTime;
